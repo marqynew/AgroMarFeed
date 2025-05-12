@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgroMarFeed</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Heroicons CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", "Poppins", sans-serif;
+      }
+      .olive {
+        background-color: #2d2a1e;
+      }
+      .olive-text {
+        color: #2d2a1e;
+      }
+    </style>
+  </head>
+  <body class="bg-white flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="w-full py-4 px-4 md:px-10 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img
+          src="assets/images/logo.png"
+          alt="AgroMarFeed Logo"
+          class="h-10 w-10"
+        />
+      </div>
+      <!-- Nav Links (Desktop) -->
+      <nav class="hidden md:flex flex-1 justify-center">
+        <ul class="flex bg-[#2d2a1e] rounded-full px-4 py-1 space-x-2">
+          <li>
+            <a
+              href="#"
+              class="text-white text-sm px-4 py-2 rounded-full hover:bg-white hover:text-[#2d2a1e] transition"
+              aria-label="Beranda"
+              >Beranda</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-white text-sm px-4 py-2 rounded-full hover:bg-white hover:text-[#2d2a1e] transition"
+              aria-label="Cari Pakan"
+              >Cari Pakan</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-white text-sm px-4 py-2 rounded-full hover:bg-white hover:text-[#2d2a1e] transition"
+              aria-label="Konsul Pakan"
+              >Konsul Pakan</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-white text-sm px-4 py-2 rounded-full hover:bg-white hover:text-[#2d2a1e] transition"
+              aria-label="Artikel & Tips"
+              >Artikel & Tips</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!-- Icons (Desktop) -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button
+          aria-label="Keranjang"
+          class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <button
+          aria-label="Favorit"
+          class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <button
+          aria-label="Profil"
+          class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+        >
+          <i class="fa-regular fa-user"></i>
+        </button>
+      </div>
+      <!-- Hamburger (Mobile) -->
+      <div class="md:hidden flex items-center">
+        <button
+          id="menu-btn"
+          aria-label="Buka menu"
+          class="text-[#2d2a1e] text-2xl focus:outline-none"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <ul class="flex flex-col bg-[#2d2a1e] rounded-xl py-2 space-y-1">
+        <li>
+          <a
+            href="#"
+            class="block text-white px-4 py-2 rounded hover:bg-white hover:text-[#2d2a1e] transition"
+            >Beranda</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block text-white px-4 py-2 rounded hover:bg-white hover:text-[#2d2a1e] transition"
+            >Cari Pakan</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block text-white px-4 py-2 rounded hover:bg-white hover:text-[#2d2a1e] transition"
+            >Konsul Pakan</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block text-white px-4 py-2 rounded hover:bg-white hover:text-[#2d2a1e] transition"
+            >Artikel & Tips</a
+          >
+        </li>
+        <li class="flex space-x-2 px-4 pt-2">
+          <button
+            aria-label="Keranjang"
+            class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+          <button
+            aria-label="Favorit"
+            class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <button
+            aria-label="Profil"
+            class="rounded-full p-2 bg-white border border-[#2d2a1e] hover:bg-[#2d2a1e] hover:text-white transition text-[#2d2a1e]"
+          >
+            <i class="fa-regular fa-user"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content Placeholder -->
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section
+        class="relative min-h-[380px] md:min-h-[700px] flex flex-col justify-center items-center text-center"
+      >
+        <img
+          src="assets/images/hero-bg.png"
+          alt="Sawah"
+          class="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-[#2d2a1e]/70 via-[#2d2a1e]/40 to-transparent z-10"
+        ></div>
+        <div class="relative z-20 max-w-2xl mx-auto pt-16 pb-8 px-4">
+          <h1
+            class="text-white text-2xl md:text-3xl font-bold mb-3 drop-shadow"
+          >
+            Diskon Pakan Ramah Lingkungan Mulai Hari Ini!
+          </h1>
+          <p class="text-white text-base md:text-lg mb-5 drop-shadow">
+            Pelet ikan, pakan ayam, dan ternak dari limbah agro-maritim. Hemat
+            hingga 30%! Beli pakan, bantu bumi.
+          </p>
+          <a
+            href="#"
+            class="bg-[#f5a623] hover:bg-yellow-400 text-[#2d2a1e] font-semibold px-6 py-2 rounded-full shadow transition"
+            >Lihat Produk</a
+          >
+        </div>
+        <!-- Statistik -->
+        <div
+          class="relative z-20 w-full max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 rounded-xl shadow px-4 py-4 md:py-6 -mb-12 md:-mb-14"
+        >
+          <div class="text-center">
+            <div class="text-xl md:text-2xl font-bold text-[#2d2a1e]">+20</div>
+            <div class="text-xs md:text-sm text-gray-700">
+              Kota aktif penyaluran pakan & konsultasi
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-xl md:text-2xl font-bold text-[#2d2a1e]">
+              6.200kg
+            </div>
+            <div class="text-xs md:text-sm text-gray-700">
+              Pakan terjual untuk peternak & petani
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-xl md:text-2xl font-bold text-[#2d2a1e]">500+</div>
+            <div class="text-xs md:text-sm text-gray-700">
+              Pelanggan di seluruh Indonesia
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-xl md:text-2xl font-bold text-[#2d2a1e]">85%</div>
+            <div class="text-xs md:text-sm text-gray-700">
+              Dari pelanggan melakukan repeat order
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacer untuk statistik -->
+      <div class="h-16 md:h-20"></div>
+
+      <!-- Best Seller Section -->
+      <section
+        class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      >
+        <div>
+          <h2 class="text-[#f5a623] text-2xl font-bold mb-2">BEST SELLER!</h2>
+          <p class="mb-4 text-gray-700">
+            Pelet ikan, pakan ayam, dan ternak dari limbah agro-maritim. Hemat
+            hingga 30%! Beli pakan, bantu bumi.
+          </p>
+          <a
+            href="#"
+            class="inline-block bg-[#2d2a1e] text-white px-5 py-2 rounded-full shadow hover:bg-[#f5a623] hover:text-[#2d2a1e] font-semibold transition"
+            >Lihat Selengkapnya</a
+          >
+        </div>
+        <div class="flex justify-center">
+          <img
+            src="assets/images/best-seller.png"
+            alt="Best Seller"
+            class="w-48 md:w-60 drop-shadow-xl"
+          />
+        </div>
+      </section>
+
+      <!-- Special Offer Section -->
+      <section class="max-w-6xl mx-auto px-4 py-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-2xl font-semibold olive-text">Special Offer</h3>
+          <a href="#" class="text-base text-[#2d2a1e] hover:underline"
+            >Lihat semua &rarr;</a
+          >
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="relative flex items-center bg-[#F5A623] rounded-2xl p-8 min-h-[260px] overflow-hidden"
+          >
+            <div class="flex-1 z-10">
+              <span
+                class="inline-block bg-[#F9E7C3] text-[#2d2a1e] text-sm font-semibold px-4 py-1 rounded-full mb-6"
+                >Flat 25% Diskon</span
+              >
+              <h4 class="text-3xl font-bold olive-text mb-2">
+                SCRATCH & PECK FEEDS
+              </h4>
+              <p class="olive-text text-base mb-6 max-w-xs">
+                limbah agro-maritim. Hemat hingga 30%! Beli pakan, bantu bumi.
+              </p>
+              <a
+                href="#"
+                class="inline-block bg-[#2d2a1e] text-white text-lg font-semibold px-8 py-3 rounded-full shadow hover:bg-[#222] transition"
+                >Beli Sekarang &rarr;</a
+              >
+            </div>
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="h-40 w-auto object-contain absolute right-8 bottom-8 z-0"
+            />
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="relative flex items-center bg-[#8BAA63] rounded-2xl p-8 min-h-[260px] overflow-hidden"
+          >
+            <div class="flex-1 z-10">
+              <span
+                class="inline-block bg-[#F5A623] text-white text-sm font-semibold px-4 py-1 rounded-full mb-6"
+                >Flat 15% Diskon</span
+              >
+              <h4 class="text-3xl font-bold text-white mb-2">GIMME ORGANIC</h4>
+              <p class="text-white text-base mb-6 max-w-xs">
+                limbah agro-maritim. Hemat hingga 30%! Beli pakan, bantu bumi.
+              </p>
+              <a
+                href="#"
+                class="inline-block bg-white text-[#8BAA63] text-lg font-semibold px-8 py-3 rounded-full shadow hover:bg-[#F5A623] hover:text-white transition"
+                >Beli Sekarang &rarr;</a
+              >
+            </div>
+            <img
+              src="assets/images/offer-2.png"
+              alt="Gimme Organic"
+              class="h-40 w-auto object-contain absolute right-8 bottom-8 z-0"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Produk Pakan Section -->
+      <section class="max-w-6xl mx-auto px-4 py-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6"
+        >
+          <h3 class="text-2xl font-semibold olive-text">Produk Pakan</h3>
+          <div class="flex flex-wrap gap-2">
+            <button
+              class="bg-[#7B9445] text-white px-5 py-1 rounded-full font-medium text-sm shadow hover:bg-[#2d2a1e] transition"
+            >
+              Pakan Ikan
+            </button>
+            <button
+              class="bg-[#7B9445] text-white px-5 py-1 rounded-full font-medium text-sm shadow hover:bg-[#2d2a1e] transition"
+            >
+              Pakan Ternak
+            </button>
+            <button
+              class="bg-[#7B9445] text-white px-5 py-1 rounded-full font-medium text-sm shadow hover:bg-[#2d2a1e] transition"
+            >
+              Pakan Ayam
+            </button>
+            <button
+              class="bg-[#7B9445] text-white px-5 py-1 rounded-full font-medium text-sm shadow hover:bg-[#2d2a1e] transition"
+            >
+              Pakan Burung
+            </button>
+          </div>
+          <a href="#" class="text-sm text-[#2d2a1e] hover:underline md:ml-4"
+            >Lihat semua &rarr;</a
+          >
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- Produk Card 1 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scrath & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Produk Card 2 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scratch & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Produk Card 3 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scratch & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Produk Card 4 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scratch & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Produk Card 5 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scratch & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Produk Card 6 -->
+          <div
+            class="bg-[#fafbfc] rounded-2xl shadow p-5 flex flex-col items-start w-full max-w-xs mx-auto"
+          >
+            <img
+              src="assets/images/offer-1.png"
+              alt="Scratch & Peck Feeds"
+              class="w-50 h-50 object-contain mb-4 mx-auto"
+            />
+            <div class="w-full">
+              <div class="font-semibold text-lg olive-text mb-1">
+                Scratch & Peck Feeds
+              </div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-500">Pakan ternak ayam</span>
+                <span class="flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  4.5
+                </span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-bold text-[#2d2a1e] text-base">Rp120RB</span>
+                <div class="flex items-center gap-2">
+                  <button
+                    aria-label="Tambah ke Keranjang"
+                    class="rounded-full bg-[#2d2a1e] text-white w-8 h-8 flex items-center justify-center hover:bg-[#f5a623] transition"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button
+                    aria-label="Wishlist"
+                    class="rounded-full bg-gray-100 text-[#bdbdbd] w-8 h-8 flex items-center justify-center hover:text-[#f5a623] transition"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Banner Promo Jumbo (Lebar sama dengan Produk Pakan) -->
+    <section class="max-w-6xl mx-auto px-4 py-8">
+      <div
+        class="flex flex-col md:flex-row items-center bg-[#2d2a1e] rounded-2xl overflow-hidden min-h-[220px]"
+      >
+        <!-- Gambar produk jumbo -->
+        <div class="flex-1 flex justify-center md:justify-start">
+          <img
+            src="assets/images/banner-jumbo.png"
+            alt="Pakan Jumbo"
+            class="w-40 md:w-56 object-contain -ml-4 md:-ml-8"
+          />
+        </div>
+        <!-- Teks promo -->
+        <div
+          class="flex-1 flex flex-col items-center md:items-start text-center md:text-left py-8 px-4 md:px-10"
+        >
+          <div class="text-white text-2xl md:text-3xl font-semibold mb-2">
+            Segera Hadir!
+          </div>
+          <div class="text-white text-lg md:text-xl mb-1">
+            Pakan Jumbo, Harga Lebih Hemat
+          </div>
+          <div class="text-[#f5a623] text-4xl md:text-5xl font-bold mb-2">
+            30 Kg
+          </div>
+          <div class="text-white text-xs md:text-sm">
+            Peternak dari limbah agro-maritim. Hemat hingga 30%! Beli pakan,
+            bantu bumi.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Konsultasi -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="flex-1 mb-8 md:mb-0">
+          <h2
+            class="text-2xl md:text-3xl font-bold olive-text mb-4 leading-snug"
+          >
+            Butuh Panduan<br class="hidden md:block" />
+            Langsung dari Pakarnya?
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Kami hadirkan konsultasi pribadi tanpa harus ke lapangan.<br />
+            Efisien, terpercaya, dan siap membantu Anda 24/7.
+          </p>
+          <a
+            href="#"
+            class="inline-block bg-[#f5a623] text-[#2d2a1e] font-semibold px-6 py-2 rounded-full shadow hover:bg-[#2d2a1e] hover:text-white transition"
+          >
+            Mulai Konsultasi
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kenapa Pilih AgroMarFeed -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-6">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <img
+            src="assets/images/logo.png"
+            alt="Logo AgroMarFeed"
+            class="h-8 w-8 inline-block"
+          />
+          <h2 class="text-2xl md:text-2xl font-semibold olive-text">
+            Kenapa Pilih AgroMarFeed?
+          </h2>
+        </div>
+        <p class="text-gray-600 text-sm">
+          Pelet ikan, pakan ayam, dan ternak dari limbah agro-maritim. Hemat
+          hingga 30%! Beli pakan, bantu bumi.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        <!-- Card 1 -->
+        <div class="flex items-start gap-4">
+          <img
+            src="assets/images/Group 1.png"
+            alt="Zero Waste"
+            class="h-10 w-10 object-contain"
+          />
+          <div>
+            <div class="font-semibold olive-text mb-1">Berbasis Zero Waste</div>
+            <div class="text-sm text-gray-600">
+              Pelet ikan, pakan ayam, dan ternak dari limbah agro-maritim. Hemat
+              hingga 30%! Beli pakan, bantu bumi.
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="flex items-start gap-4">
+          <img
+            src="assets/images/Group 2.png"
+            alt="Akses untuk Semua"
+            class="h-10 w-10 object-contain"
+          />
+          <div>
+            <div class="font-semibold olive-text mb-1">Akses untuk Semua</div>
+            <div class="text-sm text-gray-600">
+              Petani, peternak, dan UMKM dari seluruh Indonesia dapat membeli
+              pakan ramah lingkungan.
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="flex items-start gap-4">
+          <img
+            src="assets/images/Group 3.png"
+            alt="Gratis Ongkir Lokal"
+            class="h-10 w-10 object-contain"
+          />
+          <div>
+            <div class="font-semibold olive-text mb-1">Gratis Ongkir Lokal</div>
+            <div class="text-sm text-gray-600">
+              Gratis ongkir untuk area tertentu, pesan lebih mudah dan hemat
+              biaya kirim.
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="flex items-start gap-4">
+          <img
+            src="assets/images/Group 4.png"
+            alt="Edukasi & Konsultasi"
+            class="h-10 w-10 object-contain"
+          />
+          <div>
+            <div class="font-semibold olive-text mb-1">
+              Edukasi & Konsultasi
+            </div>
+            <div class="text-sm text-gray-600">
+              Dapatkan edukasi, tips, dan konsultasi gratis seputar pakan dan
+              ternak dari tim ahli kami.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Latest Blog Section -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-2xl font-semibold olive-text">Latest Blog</h3>
+        <a href="#" class="text-sm text-gray-500 hover:underline"
+          >Lihat semua &rarr;</a
+        >
+      </div>
+      <div class="relative">
+        <div class="flex gap-6 overflow-x-auto pb-2 scrollbar-hide">
+          <!-- Blog Card 1 -->
+          <div
+            class="min-w-[320px] bg-[#f7f8fa] rounded-xl shadow p-4 flex-shrink-0"
+          >
+            <img
+              src="assets/images/blog-1.png"
+              alt="Blog 1"
+              class="w-full h-36 object-cover rounded-lg mb-3"
+            />
+            <div class="text-xs text-gray-400 mb-1 flex items-center gap-1">
+              <i class="fa-regular fa-clock"></i> Minggu lalu
+            </div>
+            <div class="font-semibold text-base olive-text mb-2 leading-snug">
+              Mengubah Limbah Jadi Cuan: Cara Buat Pakan Ternak Sendiri dari
+              Sisa Dapur
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center gap-2">
+                <img
+                  src="assets/images/author-1.png"
+                  alt="Author"
+                  class="w-6 h-6 rounded-full object-cover"
+                />
+                <span class="text-xs text-gray-700">Asimah Al-Huda</span>
+              </div>
+              <button
+                aria-label="Baca Blog"
+                class="text-[#bdbdbd] hover:text-[#2d2a1e]"
+              >
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Blog Card 2 -->
+          <div
+            class="min-w-[320px] bg-[#f7f8fa] rounded-xl shadow p-4 flex-shrink-0"
+          >
+            <img
+              src="assets/images/blog-1.png"
+              alt="Blog 2"
+              class="w-full h-36 object-cover rounded-lg mb-3"
+            />
+            <div class="text-xs text-gray-400 mb-1 flex items-center gap-1">
+              <i class="fa-regular fa-clock"></i> Minggu lalu
+            </div>
+            <div class="font-semibold text-base olive-text mb-2 leading-snug">
+              Mengubah Limbah Jadi Cuan: Cara Buat Pakan Ternak Sendiri dari
+              Sisa Dapur
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center gap-2">
+                <img
+                  src="assets/images/author-1.png"
+                  alt="Author"
+                  class="w-6 h-6 rounded-full object-cover"
+                />
+                <span class="text-xs text-gray-700">Asimah Al-Huda</span>
+              </div>
+              <button
+                aria-label="Baca Blog"
+                class="text-[#bdbdbd] hover:text-[#2d2a1e]"
+              >
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Blog Card 3 -->
+          <div
+            class="min-w-[320px] bg-[#f7f8fa] rounded-xl shadow p-4 flex-shrink-0"
+          >
+            <img
+              src="assets/images/blog-1.png"
+              alt="Blog 3"
+              class="w-full h-36 object-cover rounded-lg mb-3"
+            />
+            <div class="text-xs text-gray-400 mb-1 flex items-center gap-1">
+              <i class="fa-regular fa-clock"></i> Minggu lalu
+            </div>
+            <div class="font-semibold text-base olive-text mb-2 leading-snug">
+              Mengubah Limbah Jadi Cuan: Cara Buat Pakan Ternak Sendiri dari
+              Sisa Dapur
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center gap-2">
+                <img
+                  src="assets/images/author-1.png"
+                  alt="Author"
+                  class="w-6 h-6 rounded-full object-cover"
+                />
+                <span class="text-xs text-gray-700">Asimah Al-Huda</span>
+              </div>
+              <button
+                aria-label="Baca Blog"
+                class="text-[#bdbdbd] hover:text-[#2d2a1e]"
+              >
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navigasi panah -->
+        <div class="flex justify-between items-center mt-6 px-2">
+          <button
+            aria-label="Sebelumnya"
+            class="rounded-full p-2 text-2xl text-[#2d2a1e] hover:bg-gray-100 transition"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button
+            aria-label="Selanjutnya"
+            class="rounded-full p-2 text-2xl text-[#2d2a1e] hover:bg-gray-100 transition"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="olive text-white pt-10 pb-4 px-4 md:px-16">
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 pb-6 border-b border-white/10"
+      >
+        <!-- Logo + Description -->
+        <div>
+          <div class="flex items-center space-x-2 mb-2">
+            <img
+              src="assets/images/logo.png"
+              alt="AgroMarFeed Logo"
+              class="h-8 w-8"
+            />
+            <span class="font-semibold text-lg">AgroMarFeed</span>
+          </div>
+          <p class="text-xs text-white/80 mb-2">
+            Pelet ikan, pakan ayam, dan ternak dari limbah agro maritim. Hemat
+            hingga 30%!<br />
+            Beli pakan, bantu bumi.
+          </p>
+          <div class="flex space-x-3 mt-4">
+            <a href="#" aria-label="Facebook" class="hover:text-[#b6b6b6]"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Instagram" class="hover:text-[#b6b6b6]"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="YouTube" class="hover:text-[#b6b6b6]"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+        <!-- Company Links -->
+        <div>
+          <h3 class="font-semibold mb-2">Company</h3>
+          <ul class="space-y-1 text-sm">
+            <li><a href="#" class="hover:underline">Blog</a></li>
+            <li><a href="#" class="hover:underline">Artikel & Tips</a></li>
+            <li><a href="#" class="hover:underline">About Us</a></li>
+          </ul>
+        </div>
+        <!-- Informasi Links -->
+        <div>
+          <h3 class="font-semibold mb-2">Informasi</h3>
+          <ul class="space-y-1 text-sm">
+            <li><a href="#" class="hover:underline">Akun Saya</a></li>
+            <li><a href="#" class="hover:underline">Keranjang Anda</a></li>
+            <li><a href="#" class="hover:underline">FAQ</a></li>
+          </ul>
+        </div>
+        <!-- Contact Info -->
+        <div>
+          <h3 class="font-semibold mb-2">Hubungi Kami</h3>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-center space-x-2">
+              <i class="fab fa-whatsapp"></i>
+              <span>+62 822 6089 2330</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fa-regular fa-envelope"></i>
+              <span>agromarfeed@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center text-xs text-white/60 mt-4">
+        &copy; 2024 AgroMarFeed. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
